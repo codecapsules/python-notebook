@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h3>POST UPDATE</h3>
+
+    <p>word count: {{ post.word_count }}</p>
+    <p>{{ post.content }}</p>
+    <p>{{ post.created_at|date:"Y" }}</p>
+
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+        </form>
+    </div>
+{% endblock %}
