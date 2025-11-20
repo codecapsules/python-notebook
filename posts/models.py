@@ -1,7 +1,11 @@
 import re
 
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 from django.template.defaultfilters import slugify
+
+from core.models import UserProfile
 
 
 # Create your models here.
@@ -12,6 +16,7 @@ class Post(models.Model):
         ("published", "published")
     )
 
+    author     = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts")
     title      = models.CharField(max_length=200)
     slug       = models.SlugField(default="", unique=True)
     content    = models.TextField(blank=True, default="")
